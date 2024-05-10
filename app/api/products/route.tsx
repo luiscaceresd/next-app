@@ -3,8 +3,8 @@ import schema from "./schema";
 
 export function GET(request: NextRequest) {
   return NextResponse.json([
-    {id: 1, name: 'Mosh'},
-    {id: 2, name: 'John'},
+    {id: 1, name: 'Milk', price: 2.5},
+    {id: 2, name: 'Bread', price: 3.5},
   ]);
 }
 
@@ -16,5 +16,5 @@ export async function POST(request: NextRequest) {
   if(!validation.success)
     return NextResponse.json(validation.error.errors, {status: 400});
 
-  return NextResponse.json({id: 1, name: body.name}, {status: 201});
+  return NextResponse.json({id: 1, name: body.name, price: body.price}, {status: 201});
 }
