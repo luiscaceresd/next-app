@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.17.1",
-    "daisyui": "^4.10.5"
+    "daisyui": "^4.10.5",
+    "encoding": "^0.1.13"
   }
 }
