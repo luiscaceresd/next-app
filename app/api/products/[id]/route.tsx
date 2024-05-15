@@ -4,7 +4,7 @@ import prisma from "@/prisma/client";
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   const product = await prisma.product.findUnique({
-    where: { id: parseInt(params.id) }
+    where: { id: params.id }
   })
 
   if (!product)
@@ -22,14 +22,14 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     return NextResponse.json(validation.error.errors, { status: 400 });
 
   const product = prisma.product.findUnique({
-    where: { id: parseInt(params.id) }
+    where: { id: params.id }
   })
 
   if (!product)
     return NextResponse.json({ error: 'Product not found' }, { status: 404 });
 
   const updatedProduct = await prisma.product.update({
-    where: { id: parseInt(params.id) },
+    where: { id: params.id },
     data: {
       name: body.name,
       price: body.price
@@ -41,14 +41,14 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   const product = prisma.product.findUnique({
-    where: { id: parseInt(params.id) }
+    where: { id: params.id }
   })
 
   if (!product)
     return NextResponse.json({ error: 'Product not found' }, { status: 404 });
 
   await prisma.product.delete({
-    where: { id: parseInt(params.id) }
+    where: { id: params.id }
   });
 
   return NextResponse.json({});
